@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangjubao.dolphin.mapper.ads.NbfOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.wangjubao.dolphin.pojo.ads.NbfOrder" >
+    <result column="adjust_fee" property="adjustFee" jdbcType="DOUBLE" />
+    <result column="ads_create_time" property="adsCreateTime" jdbcType="TIMESTAMP" />
+    <result column="ads_last_update_time" property="adsLastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="buyer_id" property="buyerId" jdbcType="BIGINT" />
+    <result column="buyer_rate_flag" property="buyerRateFlag" jdbcType="VARCHAR" />
+    <result column="consign_time" property="consignTime" jdbcType="TIMESTAMP" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="discount_fee" property="discountFee" jdbcType="DOUBLE" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="last_modified_time" property="lastModifiedTime" jdbcType="TIMESTAMP" />
+    <result column="logistics_company" property="logisticsCompany" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="DOUBLE" />
+    <result column="order_from" property="orderFrom" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="payment" property="payment" jdbcType="DOUBLE" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="refund_status" property="refundStatus" jdbcType="VARCHAR" />
+    <result column="seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="seller_rate_flag" property="sellerRateFlag" jdbcType="VARCHAR" />
+    <result column="sku_id" property="skuId" jdbcType="VARCHAR" />
+    <result column="sku_prop_name" property="skuPropName" jdbcType="VARCHAR" />
+    <result column="total_payment" property="totalPayment" jdbcType="DOUBLE" />
+    <result column="trade_id" property="tradeId" jdbcType="BIGINT" />
+    <result column="wjb_create_time" property="wjbCreateTime" jdbcType="TIMESTAMP" />
+    <result column="wjb_last_update_time" property="wjbLastUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    adjust_fee, ads_create_time, ads_last_update_time, buyer_id, buyer_rate_flag, consign_time, 
+    created_time, discount_fee, end_time, item_id, last_modified_time, logistics_company, 
+    num, order_from, order_id, payment, pay_time, price, refund_status, seller_id, seller_rate_flag, 
+    sku_id, sku_prop_name, total_payment, trade_id, wjb_create_time, wjb_last_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangjubao.dolphin.pojo.ads.NbfOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nbf_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.wangjubao.dolphin.pojo.ads.NbfOrderExample" >
+    delete from nbf_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangjubao.dolphin.pojo.ads.NbfOrder" >
+    insert into nbf_order (adjust_fee, ads_create_time, ads_last_update_time, 
+      buyer_id, buyer_rate_flag, consign_time, 
+      created_time, discount_fee, end_time, 
+      item_id, last_modified_time, logistics_company, 
+      num, order_from, order_id, 
+      payment, pay_time, price, 
+      refund_status, seller_id, seller_rate_flag, 
+      sku_id, sku_prop_name, total_payment, 
+      trade_id, wjb_create_time, wjb_last_update_time
+      )
+    values (#{adjustFee,jdbcType=DOUBLE}, #{adsCreateTime,jdbcType=TIMESTAMP}, #{adsLastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{buyerId,jdbcType=BIGINT}, #{buyerRateFlag,jdbcType=VARCHAR}, #{consignTime,jdbcType=TIMESTAMP}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{discountFee,jdbcType=DOUBLE}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{itemId,jdbcType=BIGINT}, #{lastModifiedTime,jdbcType=TIMESTAMP}, #{logisticsCompany,jdbcType=VARCHAR}, 
+      #{num,jdbcType=DOUBLE}, #{orderFrom,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}, 
+      #{payment,jdbcType=DOUBLE}, #{payTime,jdbcType=TIMESTAMP}, #{price,jdbcType=DOUBLE}, 
+      #{refundStatus,jdbcType=VARCHAR}, #{sellerId,jdbcType=BIGINT}, #{sellerRateFlag,jdbcType=VARCHAR}, 
+      #{skuId,jdbcType=VARCHAR}, #{skuPropName,jdbcType=VARCHAR}, #{totalPayment,jdbcType=DOUBLE}, 
+      #{tradeId,jdbcType=BIGINT}, #{wjbCreateTime,jdbcType=TIMESTAMP}, #{wjbLastUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangjubao.dolphin.pojo.ads.NbfOrder" >
+    insert into nbf_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adjustFee != null" >
+        adjust_fee,
+      </if>
+      <if test="adsCreateTime != null" >
+        ads_create_time,
+      </if>
+      <if test="adsLastUpdateTime != null" >
+        ads_last_update_time,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="buyerRateFlag != null" >
+        buyer_rate_flag,
+      </if>
+      <if test="consignTime != null" >
+        consign_time,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="discountFee != null" >
+        discount_fee,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="lastModifiedTime != null" >
+        last_modified_time,
+      </if>
+      <if test="logisticsCompany != null" >
+        logistics_company,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="orderFrom != null" >
+        order_from,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="refundStatus != null" >
+        refund_status,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="sellerRateFlag != null" >
+        seller_rate_flag,
+      </if>
+      <if test="skuId != null" >
+        sku_id,
+      </if>
+      <if test="skuPropName != null" >
+        sku_prop_name,
+      </if>
+      <if test="totalPayment != null" >
+        total_payment,
+      </if>
+      <if test="tradeId != null" >
+        trade_id,
+      </if>
+      <if test="wjbCreateTime != null" >
+        wjb_create_time,
+      </if>
+      <if test="wjbLastUpdateTime != null" >
+        wjb_last_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adjustFee != null" >
+        #{adjustFee,jdbcType=DOUBLE},
+      </if>
+      <if test="adsCreateTime != null" >
+        #{adsCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adsLastUpdateTime != null" >
+        #{adsLastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerRateFlag != null" >
+        #{buyerRateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="consignTime != null" >
+        #{consignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discountFee != null" >
+        #{discountFee,jdbcType=DOUBLE},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="lastModifiedTime != null" >
+        #{lastModifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logisticsCompany != null" >
+        #{logisticsCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=DOUBLE},
+      </if>
+      <if test="orderFrom != null" >
+        #{orderFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=DOUBLE},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="refundStatus != null" >
+        #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerRateFlag != null" >
+        #{sellerRateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPropName != null" >
+        #{skuPropName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPayment != null" >
+        #{totalPayment,jdbcType=DOUBLE},
+      </if>
+      <if test="tradeId != null" >
+        #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="wjbCreateTime != null" >
+        #{wjbCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wjbLastUpdateTime != null" >
+        #{wjbLastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangjubao.dolphin.pojo.ads.NbfOrderExample" resultType="java.lang.Integer" >
+    select count(*) from nbf_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update nbf_order
+    <set >
+      <if test="record.adjustFee != null" >
+        adjust_fee = #{record.adjustFee,jdbcType=DOUBLE},
+      </if>
+      <if test="record.adsCreateTime != null" >
+        ads_create_time = #{record.adsCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.adsLastUpdateTime != null" >
+        ads_last_update_time = #{record.adsLastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyerRateFlag != null" >
+        buyer_rate_flag = #{record.buyerRateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consignTime != null" >
+        consign_time = #{record.consignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdTime != null" >
+        created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.discountFee != null" >
+        discount_fee = #{record.discountFee,jdbcType=DOUBLE},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.itemId != null" >
+        item_id = #{record.itemId,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastModifiedTime != null" >
+        last_modified_time = #{record.lastModifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logisticsCompany != null" >
+        logistics_company = #{record.logisticsCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orderFrom != null" >
+        order_from = #{record.orderFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.payment != null" >
+        payment = #{record.payment,jdbcType=DOUBLE},
+      </if>
+      <if test="record.payTime != null" >
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.refundStatus != null" >
+        refund_status = #{record.refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerId != null" >
+        seller_id = #{record.sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sellerRateFlag != null" >
+        seller_rate_flag = #{record.sellerRateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuId != null" >
+        sku_id = #{record.skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuPropName != null" >
+        sku_prop_name = #{record.skuPropName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalPayment != null" >
+        total_payment = #{record.totalPayment,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tradeId != null" >
+        trade_id = #{record.tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.wjbCreateTime != null" >
+        wjb_create_time = #{record.wjbCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.wjbLastUpdateTime != null" >
+        wjb_last_update_time = #{record.wjbLastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update nbf_order
+    set adjust_fee = #{record.adjustFee,jdbcType=DOUBLE},
+      ads_create_time = #{record.adsCreateTime,jdbcType=TIMESTAMP},
+      ads_last_update_time = #{record.adsLastUpdateTime,jdbcType=TIMESTAMP},
+      buyer_id = #{record.buyerId,jdbcType=BIGINT},
+      buyer_rate_flag = #{record.buyerRateFlag,jdbcType=VARCHAR},
+      consign_time = #{record.consignTime,jdbcType=TIMESTAMP},
+      created_time = #{record.createdTime,jdbcType=TIMESTAMP},
+      discount_fee = #{record.discountFee,jdbcType=DOUBLE},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      item_id = #{record.itemId,jdbcType=BIGINT},
+      last_modified_time = #{record.lastModifiedTime,jdbcType=TIMESTAMP},
+      logistics_company = #{record.logisticsCompany,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=DOUBLE},
+      order_from = #{record.orderFrom,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      payment = #{record.payment,jdbcType=DOUBLE},
+      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      price = #{record.price,jdbcType=DOUBLE},
+      refund_status = #{record.refundStatus,jdbcType=VARCHAR},
+      seller_id = #{record.sellerId,jdbcType=BIGINT},
+      seller_rate_flag = #{record.sellerRateFlag,jdbcType=VARCHAR},
+      sku_id = #{record.skuId,jdbcType=VARCHAR},
+      sku_prop_name = #{record.skuPropName,jdbcType=VARCHAR},
+      total_payment = #{record.totalPayment,jdbcType=DOUBLE},
+      trade_id = #{record.tradeId,jdbcType=BIGINT},
+      wjb_create_time = #{record.wjbCreateTime,jdbcType=TIMESTAMP},
+      wjb_last_update_time = #{record.wjbLastUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

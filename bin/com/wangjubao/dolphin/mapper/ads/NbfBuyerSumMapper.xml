@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangjubao.dolphin.mapper.ads.NbfBuyerSumMapper" >
+  <resultMap id="BaseResultMap" type="com.wangjubao.dolphin.pojo.ads.NbfBuyerSum" >
+    <result column="ads_create_time" property="adsCreateTime" jdbcType="TIMESTAMP" />
+    <result column="ads_last_update_time" property="adsLastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="avg_buyer_payment" property="avgBuyerPayment" jdbcType="DOUBLE" />
+    <result column="avg_buyer_payment_no_post_fee" property="avgBuyerPaymentNoPostFee" jdbcType="DOUBLE" />
+    <result column="avg_item_payment" property="avgItemPayment" jdbcType="DOUBLE" />
+    <result column="bad_rate_num" property="badRateNum" jdbcType="BIGINT" />
+    <result column="buyer_id" property="buyerId" jdbcType="BIGINT" />
+    <result column="first_buy_item" property="firstBuyItem" jdbcType="BIGINT" />
+    <result column="first_pay_time" property="firstPayTime" jdbcType="TIMESTAMP" />
+    <result column="good_rate_num" property="goodRateNum" jdbcType="BIGINT" />
+    <result column="last_buy_item" property="lastBuyItem" jdbcType="BIGINT" />
+    <result column="last_mail_time" property="lastMailTime" jdbcType="TIMESTAMP" />
+    <result column="last_pay_time" property="lastPayTime" jdbcType="TIMESTAMP" />
+    <result column="last_sms_time" property="lastSmsTime" jdbcType="TIMESTAMP" />
+    <result column="neutral_rate_num" property="neutralRateNum" jdbcType="BIGINT" />
+    <result column="non_payment_trades" property="nonPaymentTrades" jdbcType="BIGINT" />
+    <result column="payment" property="payment" jdbcType="DOUBLE" />
+    <result column="pay_skus" property="paySkus" jdbcType="BIGINT" />
+    <result column="pay_times" property="payTimes" jdbcType="BIGINT" />
+    <result column="pay_trades" property="payTrades" jdbcType="BIGINT" />
+    <result column="point" property="point" jdbcType="BIGINT" />
+    <result column="puchase_times" property="puchaseTimes" jdbcType="BIGINT" />
+    <result column="refund_amount" property="refundAmount" jdbcType="DOUBLE" />
+    <result column="refund_item" property="refundItem" jdbcType="BIGINT" />
+    <result column="refund_ratio" property="refundRatio" jdbcType="DOUBLE" />
+    <result column="refund_time" property="refundTime" jdbcType="BIGINT" />
+    <result column="reserve_items" property="reserveItems" jdbcType="BIGINT" />
+    <result column="reserve_payment" property="reservePayment" jdbcType="DOUBLE" />
+    <result column="reserve_trades" property="reserveTrades" jdbcType="BIGINT" />
+    <result column="second_pay_time" property="secondPayTime" jdbcType="TIMESTAMP" />
+    <result column="seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="total_post_fee" property="totalPostFee" jdbcType="DOUBLE" />
+    <result column="total_presell_amount" property="totalPresellAmount" jdbcType="DOUBLE" />
+    <result column="wjb_create_time" property="wjbCreateTime" jdbcType="TIMESTAMP" />
+    <result column="wjb_last_update_time" property="wjbLastUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ads_create_time, ads_last_update_time, avg_buyer_payment, avg_buyer_payment_no_post_fee, 
+    avg_item_payment, bad_rate_num, buyer_id, first_buy_item, first_pay_time, good_rate_num, 
+    last_buy_item, last_mail_time, last_pay_time, last_sms_time, neutral_rate_num, non_payment_trades, 
+    payment, pay_skus, pay_times, pay_trades, point, puchase_times, refund_amount, refund_item, 
+    refund_ratio, refund_time, reserve_items, reserve_payment, reserve_trades, second_pay_time, 
+    seller_id, total_post_fee, total_presell_amount, wjb_create_time, wjb_last_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wangjubao.dolphin.pojo.ads.NbfBuyerSumExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nbf_buyer_sum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.wangjubao.dolphin.pojo.ads.NbfBuyerSumExample" >
+    delete from nbf_buyer_sum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wangjubao.dolphin.pojo.ads.NbfBuyerSum" >
+    insert into nbf_buyer_sum (ads_create_time, ads_last_update_time, 
+      avg_buyer_payment, avg_buyer_payment_no_post_fee, 
+      avg_item_payment, bad_rate_num, buyer_id, 
+      first_buy_item, first_pay_time, good_rate_num, 
+      last_buy_item, last_mail_time, last_pay_time, 
+      last_sms_time, neutral_rate_num, non_payment_trades, 
+      payment, pay_skus, pay_times, 
+      pay_trades, point, puchase_times, 
+      refund_amount, refund_item, refund_ratio, 
+      refund_time, reserve_items, reserve_payment, 
+      reserve_trades, second_pay_time, seller_id, 
+      total_post_fee, total_presell_amount, wjb_create_time, 
+      wjb_last_update_time)
+    values (#{adsCreateTime,jdbcType=TIMESTAMP}, #{adsLastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{avgBuyerPayment,jdbcType=DOUBLE}, #{avgBuyerPaymentNoPostFee,jdbcType=DOUBLE}, 
+      #{avgItemPayment,jdbcType=DOUBLE}, #{badRateNum,jdbcType=BIGINT}, #{buyerId,jdbcType=BIGINT}, 
+      #{firstBuyItem,jdbcType=BIGINT}, #{firstPayTime,jdbcType=TIMESTAMP}, #{goodRateNum,jdbcType=BIGINT}, 
+      #{lastBuyItem,jdbcType=BIGINT}, #{lastMailTime,jdbcType=TIMESTAMP}, #{lastPayTime,jdbcType=TIMESTAMP}, 
+      #{lastSmsTime,jdbcType=TIMESTAMP}, #{neutralRateNum,jdbcType=BIGINT}, #{nonPaymentTrades,jdbcType=BIGINT}, 
+      #{payment,jdbcType=DOUBLE}, #{paySkus,jdbcType=BIGINT}, #{payTimes,jdbcType=BIGINT}, 
+      #{payTrades,jdbcType=BIGINT}, #{point,jdbcType=BIGINT}, #{puchaseTimes,jdbcType=BIGINT}, 
+      #{refundAmount,jdbcType=DOUBLE}, #{refundItem,jdbcType=BIGINT}, #{refundRatio,jdbcType=DOUBLE}, 
+      #{refundTime,jdbcType=BIGINT}, #{reserveItems,jdbcType=BIGINT}, #{reservePayment,jdbcType=DOUBLE}, 
+      #{reserveTrades,jdbcType=BIGINT}, #{secondPayTime,jdbcType=TIMESTAMP}, #{sellerId,jdbcType=BIGINT}, 
+      #{totalPostFee,jdbcType=DOUBLE}, #{totalPresellAmount,jdbcType=DOUBLE}, #{wjbCreateTime,jdbcType=TIMESTAMP}, 
+      #{wjbLastUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wangjubao.dolphin.pojo.ads.NbfBuyerSum" >
+    insert into nbf_buyer_sum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adsCreateTime != null" >
+        ads_create_time,
+      </if>
+      <if test="adsLastUpdateTime != null" >
+        ads_last_update_time,
+      </if>
+      <if test="avgBuyerPayment != null" >
+        avg_buyer_payment,
+      </if>
+      <if test="avgBuyerPaymentNoPostFee != null" >
+        avg_buyer_payment_no_post_fee,
+      </if>
+      <if test="avgItemPayment != null" >
+        avg_item_payment,
+      </if>
+      <if test="badRateNum != null" >
+        bad_rate_num,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="firstBuyItem != null" >
+        first_buy_item,
+      </if>
+      <if test="firstPayTime != null" >
+        first_pay_time,
+      </if>
+      <if test="goodRateNum != null" >
+        good_rate_num,
+      </if>
+      <if test="lastBuyItem != null" >
+        last_buy_item,
+      </if>
+      <if test="lastMailTime != null" >
+        last_mail_time,
+      </if>
+      <if test="lastPayTime != null" >
+        last_pay_time,
+      </if>
+      <if test="lastSmsTime != null" >
+        last_sms_time,
+      </if>
+      <if test="neutralRateNum != null" >
+        neutral_rate_num,
+      </if>
+      <if test="nonPaymentTrades != null" >
+        non_payment_trades,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="paySkus != null" >
+        pay_skus,
+      </if>
+      <if test="payTimes != null" >
+        pay_times,
+      </if>
+      <if test="payTrades != null" >
+        pay_trades,
+      </if>
+      <if test="point != null" >
+        point,
+      </if>
+      <if test="puchaseTimes != null" >
+        puchase_times,
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount,
+      </if>
+      <if test="refundItem != null" >
+        refund_item,
+      </if>
+      <if test="refundRatio != null" >
+        refund_ratio,
+      </if>
+      <if test="refundTime != null" >
+        refund_time,
+      </if>
+      <if test="reserveItems != null" >
+        reserve_items,
+      </if>
+      <if test="reservePayment != null" >
+        reserve_payment,
+      </if>
+      <if test="reserveTrades != null" >
+        reserve_trades,
+      </if>
+      <if test="secondPayTime != null" >
+        second_pay_time,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="totalPostFee != null" >
+        total_post_fee,
+      </if>
+      <if test="totalPresellAmount != null" >
+        total_presell_amount,
+      </if>
+      <if test="wjbCreateTime != null" >
+        wjb_create_time,
+      </if>
+      <if test="wjbLastUpdateTime != null" >
+        wjb_last_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adsCreateTime != null" >
+        #{adsCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adsLastUpdateTime != null" >
+        #{adsLastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avgBuyerPayment != null" >
+        #{avgBuyerPayment,jdbcType=DOUBLE},
+      </if>
+      <if test="avgBuyerPaymentNoPostFee != null" >
+        #{avgBuyerPaymentNoPostFee,jdbcType=DOUBLE},
+      </if>
+      <if test="avgItemPayment != null" >
+        #{avgItemPayment,jdbcType=DOUBLE},
+      </if>
+      <if test="badRateNum != null" >
+        #{badRateNum,jdbcType=BIGINT},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="firstBuyItem != null" >
+        #{firstBuyItem,jdbcType=BIGINT},
+      </if>
+      <if test="firstPayTime != null" >
+        #{firstPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodRateNum != null" >
+        #{goodRateNum,jdbcType=BIGINT},
+      </if>
+      <if test="lastBuyItem != null" >
+        #{lastBuyItem,jdbcType=BIGINT},
+      </if>
+      <if test="lastMailTime != null" >
+        #{lastMailTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastPayTime != null" >
+        #{lastPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastSmsTime != null" >
+        #{lastSmsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="neutralRateNum != null" >
+        #{neutralRateNum,jdbcType=BIGINT},
+      </if>
+      <if test="nonPaymentTrades != null" >
+        #{nonPaymentTrades,jdbcType=BIGINT},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=DOUBLE},
+      </if>
+      <if test="paySkus != null" >
+        #{paySkus,jdbcType=BIGINT},
+      </if>
+      <if test="payTimes != null" >
+        #{payTimes,jdbcType=BIGINT},
+      </if>
+      <if test="payTrades != null" >
+        #{payTrades,jdbcType=BIGINT},
+      </if>
+      <if test="point != null" >
+        #{point,jdbcType=BIGINT},
+      </if>
+      <if test="puchaseTimes != null" >
+        #{puchaseTimes,jdbcType=BIGINT},
+      </if>
+      <if test="refundAmount != null" >
+        #{refundAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="refundItem != null" >
+        #{refundItem,jdbcType=BIGINT},
+      </if>
+      <if test="refundRatio != null" >
+        #{refundRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="refundTime != null" >
+        #{refundTime,jdbcType=BIGINT},
+      </if>
+      <if test="reserveItems != null" >
+        #{reserveItems,jdbcType=BIGINT},
+      </if>
+      <if test="reservePayment != null" >
+        #{reservePayment,jdbcType=DOUBLE},
+      </if>
+      <if test="reserveTrades != null" >
+        #{reserveTrades,jdbcType=BIGINT},
+      </if>
+      <if test="secondPayTime != null" >
+        #{secondPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="totalPostFee != null" >
+        #{totalPostFee,jdbcType=DOUBLE},
+      </if>
+      <if test="totalPresellAmount != null" >
+        #{totalPresellAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="wjbCreateTime != null" >
+        #{wjbCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wjbLastUpdateTime != null" >
+        #{wjbLastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wangjubao.dolphin.pojo.ads.NbfBuyerSumExample" resultType="java.lang.Integer" >
+    select count(*) from nbf_buyer_sum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update nbf_buyer_sum
+    <set >
+      <if test="record.adsCreateTime != null" >
+        ads_create_time = #{record.adsCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.adsLastUpdateTime != null" >
+        ads_last_update_time = #{record.adsLastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.avgBuyerPayment != null" >
+        avg_buyer_payment = #{record.avgBuyerPayment,jdbcType=DOUBLE},
+      </if>
+      <if test="record.avgBuyerPaymentNoPostFee != null" >
+        avg_buyer_payment_no_post_fee = #{record.avgBuyerPaymentNoPostFee,jdbcType=DOUBLE},
+      </if>
+      <if test="record.avgItemPayment != null" >
+        avg_item_payment = #{record.avgItemPayment,jdbcType=DOUBLE},
+      </if>
+      <if test="record.badRateNum != null" >
+        bad_rate_num = #{record.badRateNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyerId != null" >
+        buyer_id = #{record.buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.firstBuyItem != null" >
+        first_buy_item = #{record.firstBuyItem,jdbcType=BIGINT},
+      </if>
+      <if test="record.firstPayTime != null" >
+        first_pay_time = #{record.firstPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goodRateNum != null" >
+        good_rate_num = #{record.goodRateNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastBuyItem != null" >
+        last_buy_item = #{record.lastBuyItem,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastMailTime != null" >
+        last_mail_time = #{record.lastMailTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastPayTime != null" >
+        last_pay_time = #{record.lastPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastSmsTime != null" >
+        last_sms_time = #{record.lastSmsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.neutralRateNum != null" >
+        neutral_rate_num = #{record.neutralRateNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.nonPaymentTrades != null" >
+        non_payment_trades = #{record.nonPaymentTrades,jdbcType=BIGINT},
+      </if>
+      <if test="record.payment != null" >
+        payment = #{record.payment,jdbcType=DOUBLE},
+      </if>
+      <if test="record.paySkus != null" >
+        pay_skus = #{record.paySkus,jdbcType=BIGINT},
+      </if>
+      <if test="record.payTimes != null" >
+        pay_times = #{record.payTimes,jdbcType=BIGINT},
+      </if>
+      <if test="record.payTrades != null" >
+        pay_trades = #{record.payTrades,jdbcType=BIGINT},
+      </if>
+      <if test="record.point != null" >
+        point = #{record.point,jdbcType=BIGINT},
+      </if>
+      <if test="record.puchaseTimes != null" >
+        puchase_times = #{record.puchaseTimes,jdbcType=BIGINT},
+      </if>
+      <if test="record.refundAmount != null" >
+        refund_amount = #{record.refundAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.refundItem != null" >
+        refund_item = #{record.refundItem,jdbcType=BIGINT},
+      </if>
+      <if test="record.refundRatio != null" >
+        refund_ratio = #{record.refundRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="record.refundTime != null" >
+        refund_time = #{record.refundTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.reserveItems != null" >
+        reserve_items = #{record.reserveItems,jdbcType=BIGINT},
+      </if>
+      <if test="record.reservePayment != null" >
+        reserve_payment = #{record.reservePayment,jdbcType=DOUBLE},
+      </if>
+      <if test="record.reserveTrades != null" >
+        reserve_trades = #{record.reserveTrades,jdbcType=BIGINT},
+      </if>
+      <if test="record.secondPayTime != null" >
+        second_pay_time = #{record.secondPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sellerId != null" >
+        seller_id = #{record.sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.totalPostFee != null" >
+        total_post_fee = #{record.totalPostFee,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalPresellAmount != null" >
+        total_presell_amount = #{record.totalPresellAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.wjbCreateTime != null" >
+        wjb_create_time = #{record.wjbCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.wjbLastUpdateTime != null" >
+        wjb_last_update_time = #{record.wjbLastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update nbf_buyer_sum
+    set ads_create_time = #{record.adsCreateTime,jdbcType=TIMESTAMP},
+      ads_last_update_time = #{record.adsLastUpdateTime,jdbcType=TIMESTAMP},
+      avg_buyer_payment = #{record.avgBuyerPayment,jdbcType=DOUBLE},
+      avg_buyer_payment_no_post_fee = #{record.avgBuyerPaymentNoPostFee,jdbcType=DOUBLE},
+      avg_item_payment = #{record.avgItemPayment,jdbcType=DOUBLE},
+      bad_rate_num = #{record.badRateNum,jdbcType=BIGINT},
+      buyer_id = #{record.buyerId,jdbcType=BIGINT},
+      first_buy_item = #{record.firstBuyItem,jdbcType=BIGINT},
+      first_pay_time = #{record.firstPayTime,jdbcType=TIMESTAMP},
+      good_rate_num = #{record.goodRateNum,jdbcType=BIGINT},
+      last_buy_item = #{record.lastBuyItem,jdbcType=BIGINT},
+      last_mail_time = #{record.lastMailTime,jdbcType=TIMESTAMP},
+      last_pay_time = #{record.lastPayTime,jdbcType=TIMESTAMP},
+      last_sms_time = #{record.lastSmsTime,jdbcType=TIMESTAMP},
+      neutral_rate_num = #{record.neutralRateNum,jdbcType=BIGINT},
+      non_payment_trades = #{record.nonPaymentTrades,jdbcType=BIGINT},
+      payment = #{record.payment,jdbcType=DOUBLE},
+      pay_skus = #{record.paySkus,jdbcType=BIGINT},
+      pay_times = #{record.payTimes,jdbcType=BIGINT},
+      pay_trades = #{record.payTrades,jdbcType=BIGINT},
+      point = #{record.point,jdbcType=BIGINT},
+      puchase_times = #{record.puchaseTimes,jdbcType=BIGINT},
+      refund_amount = #{record.refundAmount,jdbcType=DOUBLE},
+      refund_item = #{record.refundItem,jdbcType=BIGINT},
+      refund_ratio = #{record.refundRatio,jdbcType=DOUBLE},
+      refund_time = #{record.refundTime,jdbcType=BIGINT},
+      reserve_items = #{record.reserveItems,jdbcType=BIGINT},
+      reserve_payment = #{record.reservePayment,jdbcType=DOUBLE},
+      reserve_trades = #{record.reserveTrades,jdbcType=BIGINT},
+      second_pay_time = #{record.secondPayTime,jdbcType=TIMESTAMP},
+      seller_id = #{record.sellerId,jdbcType=BIGINT},
+      total_post_fee = #{record.totalPostFee,jdbcType=DOUBLE},
+      total_presell_amount = #{record.totalPresellAmount,jdbcType=DOUBLE},
+      wjb_create_time = #{record.wjbCreateTime,jdbcType=TIMESTAMP},
+      wjb_last_update_time = #{record.wjbLastUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
